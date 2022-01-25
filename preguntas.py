@@ -280,7 +280,16 @@ def pregunta_09():
     }
 
     """
-    return
+    from collections import defaultdict
+    d = defaultdict(int)
+    with open('./data.csv','r') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter='\t')
+        for row in csv_reader:
+            column = row[4].split(',')
+            for c in column:
+                k,v = c.split(':')
+                d[k] += 1
+    return dict(sorted(d.items()))
 
 
 def pregunta_10():
@@ -342,4 +351,4 @@ def pregunta_12():
     """
     return
 
-print(pregunta_08())
+print(pregunta_09())
