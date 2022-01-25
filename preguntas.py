@@ -362,6 +362,15 @@ def pregunta_12():
     }
 
     """
-    return
+    from collections import defaultdict
+    d = defaultdict(int)
+    with open('./data.csv','r') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter='\t')
+        for row in csv_reader:
+            k = row[0]
+            for c in row[-1].split(','):
+                key, value = c.split(':')
+                d[k] += int(value)
+    return dict(sorted(d.items()))
 
-print(pregunta_11())
+print(pregunta_12())
