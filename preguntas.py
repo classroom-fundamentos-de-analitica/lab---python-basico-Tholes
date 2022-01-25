@@ -74,7 +74,16 @@ def pregunta_03():
     ]
 
     """
-    return
+    from collections import defaultdict
+    d = defaultdict(int)
+    with open('./data.csv','r') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter='\t')
+        answer = 0
+        for row in csv_reader:
+            d[row[0]] += int(row[1])
+    x = d.keys()
+    y = d.values()
+    return sorted(zip(x,y))
 
 
 def pregunta_04():
@@ -99,7 +108,17 @@ def pregunta_04():
     ]
 
     """
-    return
+    from collections import defaultdict
+    d = defaultdict(int)
+    with open('./data.csv','r') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter='\t')
+        answer = 0
+        for row in csv_reader:
+            month = row[2].split('-')[1]
+            d[month] += 1
+    x = d.keys()
+    y = d.values()
+    return sorted(zip(x,y))
 
 
 def pregunta_05():
@@ -276,4 +295,4 @@ def pregunta_12():
     """
     return
 
-print(pregunta_02())
+print(pregunta_04())
