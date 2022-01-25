@@ -171,7 +171,23 @@ def pregunta_06():
     ]
 
     """
-    return
+    from collections import defaultdict
+    d = defaultdict(list)
+    with open('./data.csv','r') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter='\t')
+        for row in csv_reader:
+            column = row[4].split(',')
+            for c in column:
+                k,v = c.split(':')
+                max_a = d[k][1] if k in d else 0
+                min_a = d[k][0] if k in d else int(1E9)
+                d[k] = [min(min_a, int(v)), max(max_a, int(v))]
+    x = d.keys()
+    y = d.values()
+    new_ans =[]
+    for k,v in sorted(zip(x,y)):
+        new_ans.append((k,v[0],v[1]))
+    return new_ans
 
 
 def pregunta_07():
@@ -305,4 +321,4 @@ def pregunta_12():
     """
     return
 
-print(pregunta_05())
+print(pregunta_06())
