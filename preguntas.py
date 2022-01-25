@@ -51,7 +51,6 @@ def pregunta_02():
     d = defaultdict(int)
     with open('./data.csv','r') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter='\t')
-        answer = 0
         for row in csv_reader:
             d[row[0]] += 1
     x = d.keys()
@@ -78,7 +77,6 @@ def pregunta_03():
     d = defaultdict(int)
     with open('./data.csv','r') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter='\t')
-        answer = 0
         for row in csv_reader:
             d[row[0]] += int(row[1])
     x = d.keys()
@@ -112,7 +110,6 @@ def pregunta_04():
     d = defaultdict(int)
     with open('./data.csv','r') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter='\t')
-        answer = 0
         for row in csv_reader:
             month = row[2].split('-')[1]
             d[month] += 1
@@ -136,7 +133,20 @@ def pregunta_05():
     ]
 
     """
-    return
+    from collections import defaultdict
+    d = defaultdict(list)
+    with open('./data.csv','r') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter='\t')
+        for row in csv_reader:
+            max_a = d[row[0]][0] if row[0] in d else 0
+            min_a = d[row[0]][1] if row[0] in d else int(1E9)
+            d[row[0]] = [max(max_a, int(row[1])), min(min_a, int(row[1]))]
+    x = d.keys()
+    y = d.values()
+    new_ans =[]
+    for k,v in sorted(zip(x,y)):
+        new_ans.append((k,v[0],v[1]))
+    return new_ans
 
 
 def pregunta_06():
@@ -295,4 +305,4 @@ def pregunta_12():
     """
     return
 
-print(pregunta_04())
+print(pregunta_05())
