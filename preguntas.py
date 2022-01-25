@@ -211,7 +211,17 @@ def pregunta_07():
     ]
 
     """
-    return
+    from collections import defaultdict
+    d = defaultdict(list)
+    with open('./data.csv','r') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter='\t')
+        for row in csv_reader:
+            d[int(row[1])].append(row[0])
+    new_ans = []
+
+    for k,v in sorted(d.items()):
+        new_ans.append((k,v))
+    return new_ans
 
 
 def pregunta_08():
@@ -321,4 +331,4 @@ def pregunta_12():
     """
     return
 
-print(pregunta_06())
+print(pregunta_07())
