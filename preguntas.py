@@ -308,9 +308,14 @@ def pregunta_10():
         ("E", 3, 3),
     ]
 
-
     """
-    return
+    from collections import defaultdict
+    ans = []
+    with open('./data.csv','r') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter='\t')
+        for row in csv_reader:
+            ans.append((row[0], len(row[3].split(',')), len(row[4].split(','))))
+    return ans
 
 
 def pregunta_11():
@@ -351,4 +356,4 @@ def pregunta_12():
     """
     return
 
-print(pregunta_09())
+print(pregunta_10())
